@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/Message.route.js";
+import userRoutes from "./routes/User.route.js";
 
 import connectToDb from "./db/connectToDb.js";
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   connectToDb();
