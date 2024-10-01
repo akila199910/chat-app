@@ -1,3 +1,4 @@
+import MessageContainer from "../../Components/messages/MessageContainer";
 import SideBar from "../../Components/sidebar/SideBar";
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
           bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
 
       <SideBar/>
+      <MessageContainer/>
   </div>;
 };
 
