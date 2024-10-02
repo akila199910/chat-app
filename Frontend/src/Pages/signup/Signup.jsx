@@ -1,23 +1,27 @@
 import { Link } from "react-router-dom";
 import GenderCheckBox from "./GenderCheckBox";
 import { useState } from "react";
+import useSignup from "../../hook/useSignup";
 
 const Signup = () => {
   
   const [signupInputs, setSignupInputs] = useState({
-    fullname: "",
-    username: "",
+    fullName: "",
+    userName: "",
     password: "",
     confirmPassword: "",
     gender: "",
   });
-
+ // eslint-disable-next-line no-unused-vars
+ const { loading, signup} = useSignup();
   const checkGender = (gender) => {
     setSignupInputs({...signupInputs, gender: gender})
   }
-  const handleSignupFormSubmit = (e) => {
+  const handleSignupFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(signupInputs);
+    // console.log(signupInputs);
+    await signup(signupInputs);
+
   };
   return (
     <div className=" flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -34,9 +38,9 @@ const Signup = () => {
               type="text"
               placeholder="Akila Umayanga"
               className=" w-full input input-bordered h-10"
-              value={signupInputs.fullname}
+              value={signupInputs.fullName}
               onChange={(e) =>
-                setSignupInputs({ ...signupInputs, fullname: e.target.value })
+                setSignupInputs({ ...signupInputs, fullName: e.target.value })
               }
             ></input>
           </div>
@@ -49,9 +53,9 @@ const Signup = () => {
               type="text"
               placeholder="akilaumayangaw@gmail.com"
               className=" w-full input input-bordered h-10"
-              value={signupInputs.username}
+              value={signupInputs.userName}
               onChange={(e) =>
-                setSignupInputs({ ...signupInputs, username: e.target.value })
+                setSignupInputs({ ...signupInputs, userName: e.target.value })
               }
             ></input>
           </div>
@@ -73,11 +77,11 @@ const Signup = () => {
 
           <div>
             <label className=" label">
-              <span className=" text-base label-text">Conform Password</span>
+              <span className=" text-base label-text">Confirm Password</span>
             </label>
             <input
               type="password"
-              placeholder="Conform password"
+              placeholder="Confirm password"
               className=" w-full input input-bordered h-10"
               value={signupInputs.confirmPassword}
               onChange={(e) =>
