@@ -4,7 +4,6 @@ import { useState } from "react";
 import useSignup from "../../hook/useSignup";
 
 const Signup = () => {
-  
   const [signupInputs, setSignupInputs] = useState({
     fullName: "",
     userName: "",
@@ -12,16 +11,15 @@ const Signup = () => {
     confirmPassword: "",
     gender: "",
   });
- // eslint-disable-next-line no-unused-vars
- const { loading, signup} = useSignup();
+  // eslint-disable-next-line no-unused-vars
+  const { loading, signup } = useSignup();
   const checkGender = (gender) => {
-    setSignupInputs({...signupInputs, gender: gender})
-  }
+    setSignupInputs({ ...signupInputs, gender: gender });
+  };
   const handleSignupFormSubmit = async (e) => {
     e.preventDefault();
     // console.log(signupInputs);
     await signup(signupInputs);
-
   };
   return (
     <div className=" flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -92,7 +90,10 @@ const Signup = () => {
               }
             />
           </div>
-          <GenderCheckBox onChangeGender = {checkGender} selectedGender={signupInputs.gender} />
+          <GenderCheckBox
+            onChangeGender={checkGender}
+            selectedGender={signupInputs.gender}
+          />
           <Link
             to={"/login"}
             className=" text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
@@ -100,7 +101,13 @@ const Signup = () => {
             Already have an account?
           </Link>
           <div>
-            <button className=" btn btn-block btn-sm mt-2">Sign Up</button>
+            <button className=" btn btn-block btn-sm mt-2" disabled={loading}>
+              {loading ? (
+                <span className=" loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
           </div>
         </form>
       </div>
